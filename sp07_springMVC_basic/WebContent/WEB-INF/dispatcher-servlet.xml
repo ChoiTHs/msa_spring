@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- dispatcher-servlet.xml    web.xml안에 있는 DispatcherServlet 클래스의 servlet name의 명칭-servlet.xml  -->
+	
+	<!-- 사용자 클래스 객체 생성 -->
+	<bean class="kr.edu.kosa.HelloController"  name="/hello.do"/>
+	<bean class="kr.edu.kosa.ListController"  name="/list.do"/>
+	<bean class="kr.edu.kosa.InfoController" name="/info.do"/>
+	<bean class="kr.edu.kosa.WriteController"/>
+	<bean class="com.kosa.UpdateController"/>
+	<!-- http://localhost:8080/sp07_springMVC_basic/hello.bo -->
+	
+	<!-- ViewResolver 빈 객체 생성 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix"><value>/WEB-INF/views/</value></property>
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>

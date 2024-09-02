@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean class="ex05.aop.CalcImpl" id="calc"/>
+	<bean class="ex05.aop.LogPrintAroundAdvice" id="logPrintAroundAdvice"/>
+	<bean class="ex05.aop.LogPrintBeforeAdvice" id="logPrintBeforeAdvice"/>
+	<bean class="ex05.aop.LogPrintAfterAdvice" id="logPrintAfterAdvice"/>
+	<bean class="ex05.aop.LogPrintThrowingAdvice" id="logPrintThrowingAdvice"/>
+	<!-- <bean id="proxy"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>ex05.aop.ICalc</value>
+			</list>
+		</property>
+
+		<property name="target" ref="calcImpl"/>
+
+		<property name="interceptorNames">
+			<list>
+				<value>logPrintAround</value>
+				<value>logPrintBefore</value>
+				<value>logPrintAfter</value>
+				<value>logPrintThrowing</value>
+			</list>
+		</property>
+	</bean>  -->
+	<aop:config>
+		<aop:aspect id="PrintBefore" ref="logPrintBeforeAdvice">
+			<aop:pointcut expression="execution( * ex05.aop.*.*fore2(..) )" id="pointCut"/>
+			<aop:before method="before2" pointcut-ref="pointCut"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
